@@ -4,12 +4,26 @@ import json
 import html
 import datetime
 
-def firstLetters(s:str) -> str:
-    return ''.join(w[0] for w in s.split())    
-
 output = []
 week = [ "po", "út", "st","čt", "pá", "so", "ne" ]
 groups = {"a1","lab2", "MAT3", "FN1", "čj1", "hst1", "CAE1", "ReGB", "ReGP", "LINV", "LINM", "HV",""}
+
+subject_abbreviations : dict = {
+    "Biologie" : "Bi",
+    "Český jazyk a literatura" : "Čj",
+    "Humanitní studia" : "HSt",
+    "Fyzika" : "Fy",
+    "Anglický jazyk" : "Aj",
+    "Francouzský jazyk" : "Fj",
+    "Matematika" : "M",
+    "Kurz přípravy CAE" : "CAEK",
+    "Dějepis" : "Děj",
+    "Regionální geografie" : "ReGe",
+    "Hudební výchova" : "HV",
+    "Chemie" : "Ch",
+    "Linuxový seminář" : "Lin",
+    "Tělesná výchova" : "TV"
+}
 
 day = datetime.date.today().weekday()
 if day in {5,6}:
@@ -32,7 +46,7 @@ for div in soup.select('div.day-item-hover[data-detail]'):
         room = data.get("room", "")
         group = data.get("group", "")
         if (subject_items[1][:2] == week[day] and group in groups):
-            output.append(firstLetters(subject_items[0]) + ' ' + room)
+            output.append(subject_abbreviations[subject_items[0]] + ' ' + room)
     except json.JSONDecodeError as e:
             print("JSON decode error:", e)
 
