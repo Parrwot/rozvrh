@@ -6,7 +6,7 @@ import datetime
 
 output = []
 week = [ "po", "út", "st","čt", "pá", "so", "ne" ]
-groups = {"a1","lab2", "MAT3", "FN1", "čj1", "hst1", "CAE1", "ReGB", "ReGP", "LINV", "LINM", "HV",""}
+groups = {"a1","lab2", "MAT3", "FN1", "čj1", "hst1", "CAE1", "ReGB", "ReGP", "LINV", "LINM", "HV", "Chl", ""}
 
 subject_abbreviations : dict = {
     "Biologie" : "Bi",
