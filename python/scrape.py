@@ -26,7 +26,9 @@ def fetchSubjects() -> str:
         "Hudební výchova" : "HV",
         "Chemie" : "Ch",
         "Linuxový seminář" : "Lin",
-        "Tělesná výchova" : "TV"
+        "Tělesná výchova" : "TV",
+        "Výtvarná výchova" : "TV",
+        "Laboratorní cvičení" : "Lab"
     }
 
     table = [[] for _ in range(5)]
@@ -44,7 +46,12 @@ def fetchSubjects() -> str:
 
         try:
             data = json.loads(data_detail_decoded)
+            status = data.get("type", "")
+
+            if status == "removed": continue
+
             subject = data.get("subjecttext", "")
+
             if not subject: continue
 
             subject_items = subject.split(" | ")
