@@ -27,7 +27,7 @@ def fetchSubjects() -> str:
         "Chemie" : "Ch",
         "Linuxový seminář" : "Lin",
         "Tělesná výchova" : "TV",
-        "Výtvarná výchova" : "TV",
+        "Výtvarná výchova" : "VV",
         "Laboratorní cvičení" : "Lab"
     }
 
@@ -48,7 +48,7 @@ def fetchSubjects() -> str:
             data = json.loads(data_detail_decoded)
             status = data.get("type", "")
 
-            if status == "removed": continue
+            if status == "removed" or status == "absent": continue
 
             subject = data.get("subjecttext", "")
 
