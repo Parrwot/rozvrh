@@ -58,8 +58,11 @@ def fetchSubjects() -> str:
             weekday_name = subject_items[1][:2]
             room = data.get("room", "")
             group = data.get("group", "")
-            if  ( group in groups):
-                table[weekday_index[weekday_name]].append(subject_abbreviations[subject_items[0]] + ' ' + room)
+            if ( group in groups ) and subject_items[0] in subject_abbreviations:
+                abbreviation = subject_abbreviations[subject_items[0]]
+                table[weekday_index[weekday_name]].append(abbreviation + ' ' + room)
+            elif (group in groups ):
+                table[weekday_index[weekday_name]].append(subject_items[0][:3] + ' ' + room)
         except json.JSONDecodeError as e:
                 print("JSON decode error:", e)
 
